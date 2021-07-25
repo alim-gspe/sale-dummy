@@ -34,6 +34,17 @@ public class MainService {
         return result;
     }
 
+    public CustomerDto findCustomerById(Long id) {
+        CustomerDto customerDto = new CustomerDto();
+        val customer = customerRepository.findById(id);
+        if (customer.isPresent()) {
+            customerDto.setId(customer.get().getId());
+            customerDto.setName(customer.get().getName());
+            customerDto.setCode(customer.get().getCode());
+        }
+        return customerDto;
+    }
+
     public List<PurchaseOrderDto> purchaseOrders(Long customerId) {
         val purchaseOrders = purchaseOrderRepository.findByCustomer_Id(customerId);
         val result = dataMapper.purchaseOrderMap(purchaseOrders);

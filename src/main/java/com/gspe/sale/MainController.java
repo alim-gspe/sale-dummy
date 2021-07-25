@@ -19,6 +19,12 @@ public class MainController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/customers/{id}")
+    ResponseEntity<?> findCustomerById(@PathVariable Long id) {
+        val result = mainService.findCustomerById(id);
+        return ResponseEntity.ok(result);
+    }
+
     @GetMapping("/purchase-orders/{customerId}")
     ResponseEntity<?> purchaseOrders(@PathVariable Long customerId) {
         val result = mainService.purchaseOrders(customerId);
